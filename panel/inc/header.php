@@ -16,7 +16,7 @@ $cur = basename($_SERVER['SCRIPT_NAME']);
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title><?= isset($pageTitle) ? e($pageTitle) . ' — ' : '' ?>پنل مدیریت <?= e(setting('site_name', 'پارچه‌سرا')) ?></title>
+<title><?= isset($pageTitle) ? e($pageTitle) . ' — ' : '' ?>پنل مدیریت <?= e(setting('site_name', 'پارچینو')) ?></title>
 <meta name="robots" content="noindex, nofollow">
 <?= font_head_tags() ?>
 <link rel="stylesheet" href="../assets/css/panel.css">

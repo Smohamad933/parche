@@ -101,12 +101,12 @@ $checks = req_ok();
     label{display:block;margin:14px 0 4px;font-weight:bold;font-size:14px}
     input,select{width:100%;padding:10px 14px;border:1px solid #ddd;border-radius:10px;font:inherit;box-sizing:border-box;background:#fafafa}
     .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-    .btn{display:inline-block;background:#1e6f5c;color:#fff;border:0;border-radius:12px;padding:13px 34px;font:inherit;font-size:16px;font-weight:bold;cursor:pointer;margin-top:22px}
-    .btn:hover{background:#155243}
+    .btn{display:inline-block;background:#2b8fd6;color:#fff;border:0;border-radius:12px;padding:13px 34px;font:inherit;font-size:16px;font-weight:bold;cursor:pointer;margin-top:22px}
+    .btn:hover{background:#1a6bab}
     .alert{background:#fdecea;color:#b03a2e;border-radius:10px;padding:12px 16px;margin:10px 0}
-    .note{background:#eef5f2;border-radius:10px;padding:12px 16px;margin:10px 0;font-size:14px;color:#155243}
+    .note{background:#eef5f2;border-radius:10px;padding:12px 16px;margin:10px 0;font-size:14px;color:#1a6bab}
     .sec{border-top:2px dashed #eee;margin-top:26px;padding-top:18px}
-    a{color:#1e6f5c}
+    a{color:#2b8fd6}
 </style>
 </head>
 <body>

@@ -1,7 +1,7 @@
 /* پنل مدیریت پارچه‌سرا */
 :root {
-    --p-primary: #1e6f5c;
-    --p-primary-dark: #14493c;
+    --p-primary: #2b8fd6;
+    --p-primary-dark: #1a6bab;
     --p-gold: #c9a227;
     --p-bg: #f1efe9;
     --p-side: #1c2b33;
@@ -18,7 +18,7 @@ a { color: var(--p-primary); text-decoration: none; }
 .ic { width: 1.15em; height: 1.15em; vertical-align: -0.2em; flex: none; }
 .btn .ic { vertical-align: -0.28em; }
 .ic.st-on { color: var(--p-gold); fill: currentColor; }
-.p-brand .ic { width: 22px; height: 22px; vertical-align: -4px; color: #7fc4ae; }
+.p-brand .ic { width: 22px; height: 22px; vertical-align: -4px; color: #9fd4f2; }
 .stat .ico .ic { width: 27px; height: 27px; }
 h3 .ic { color: var(--p-primary); }
 
@@ -108,7 +108,7 @@ button.tag { cursor: pointer; font: inherit; font-size: 12px; font-weight: bold;
 
 .chart { display: flex; gap: 10px; align-items: end; height: 160px; padding-top: 10px; }
 .chart-col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; height: 100%; justify-content: end; }
-.chart-bar { width: 70%; max-width: 46px; background: linear-gradient(180deg, var(--p-primary), #3a8d77); border-radius: 8px 8px 3px 3px; min-height: 4px; }
+.chart-bar { width: 70%; max-width: 46px; background: linear-gradient(180deg, var(--p-primary), #6db5e8); border-radius: 8px 8px 3px 3px; min-height: 4px; }
 .chart-col small { color: var(--p-muted); }
 .status-row { display: flex; align-items: center; gap: 10px; margin: 8px 0; }
 .meter { flex: 1; height: 8px; background: var(--p-bg); border-radius: 10px; overflow: hidden; }
@@ -138,7 +138,7 @@ button.tag { cursor: pointer; font: inherit; font-size: 12px; font-weight: bold;
 .pager a.on { background: var(--p-primary); color: #fff; border-color: var(--p-primary); }
 
 /* صفحه لاگین پنل */
-.login-page { display: flex; align-items: center; justify-content: center; min-height: 100vh; background: linear-gradient(135deg, #1c2b33, #1e6f5c); }
+.login-page { display: flex; align-items: center; justify-content: center; min-height: 100vh; background: linear-gradient(135deg, #142c3e, #2b8fd6); }
 .login-box { background: #fff; border-radius: 18px; padding: 34px 38px; width: 400px; max-width: 92vw; box-shadow: 0 24px 60px rgba(0,0,0,.4); }
 .login-box h1 { margin: 0; font-size: 21px; text-align: center; }
 .login-box .muted { text-align: center; display: block; margin-bottom: 14px; }

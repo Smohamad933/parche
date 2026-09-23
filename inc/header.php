@@ -10,9 +10,9 @@ $tree = function_exists('category_tree') ? null : null;
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title><?= isset($pageTitle) ? e($pageTitle) . ' | ' : '' ?><?= e(setting('site_name', 'پارچه‌سرا')) ?></title>
+<title><?= isset($pageTitle) ? e($pageTitle) . ' | ' : '' ?><?= e(setting('site_name', 'پارچینو')) ?></title>
 <meta name="description" content="<?= e(setting('site_tagline', 'فروشگاه جامع پارچه')) ?>">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231e6f5c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx=%226%22 cy=%226%22 r=%223%22 /%3E %3Cpath d=%22M8.12 8.12 12 12%22 /%3E %3Cpath d=%22M20 4 8.12 15.88%22 /%3E %3Ccircle cx=%226%22 cy=%2218%22 r=%223%22 /%3E %3Cpath d=%22M14.8 14.8 20 20%22 /%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232b8fd6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx=%226%22 cy=%226%22 r=%223%22 /%3E %3Cpath d=%22M8.12 8.12 12 12%22 /%3E %3Cpath d=%22M20 4 8.12 15.88%22 /%3E %3Ccircle cx=%226%22 cy=%2218%22 r=%223%22 /%3E %3Cpath d=%22M14.8 14.8 20 20%22 /%3E%3C/svg%3E">
 <?= font_head_tags() ?>
 <link rel="stylesheet" href="assets/css/site.css">
 </head>
@@ -20,8 +20,14 @@ $tree = function_exists('category_tree') ? null : null;
 <header class="site-header">
     <div class="topbar">
         <div class="wrap">
+<?php if (setting('phone')): ?>
             <span><?= icon('phone') ?> <?= e(setting('phone')) ?></span>
             <span class="sep"></span>
+<?php endif; ?>
+<?php if (setting('mobile')): ?>
+            <span><?= icon('smartphone') ?> <?= e(setting('mobile')) ?></span>
+            <span class="sep"></span>
+<?php endif; ?>
             <span>ارسال رایگان برای خرید بالای <?= price(setting('free_shipping_min', 3000000)) ?></span>
             <span class="spacer"></span>
             <?php if ($u): ?>
@@ -36,7 +42,7 @@ $tree = function_exists('category_tree') ? null : null;
         </div>
     </div>
     <div class="mainbar wrap">
-        <a class="brand" href="index.php"><span class="logo"><?= icon('scissors') ?></span> <b><?= e(setting('site_name', 'پارچه‌سرا')) ?></b></a>
+        <a class="brand" href="index.php"><span class="logo"><?= icon('scissors') ?></span> <b><?= e(setting('site_name', 'پارچینو')) ?></b></a>
         <form class="searchbox" action="search.php" method="get">
             <input type="text" name="q" placeholder="جستجوی پارچه… (مثلاً ترگال، ساتن، نخی)" value="<?= e($_GET['q'] ?? '') ?>">
             <button type="submit"><?= icon('search') ?></button>
