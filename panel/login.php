@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <title>ورود به پنل — <?= e(setting('site_name', 'پارچینو')) ?></title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232b8fd6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx=%226%22 cy=%226%22 r=%223%22 /%3E %3Cpath d=%22M8.12 8.12 12 12%22 /%3E %3Cpath d=%22M20 4 8.12 15.88%22 /%3E %3Ccircle cx=%226%22 cy=%2218%22 r=%223%22 /%3E %3Cpath d=%22M14.8 14.8 20 20%22 /%3E%3C/svg%3E">
-<?= font_head_tags() ?>
+<?= font_head_tags('../assets/', '../') ?>
 <link rel="stylesheet" href="../assets/css/panel.css">
 </head>
 <body class="login-page">

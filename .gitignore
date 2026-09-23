@@ -5,6 +5,8 @@ data/*.sqlite-journal
 data/*.db
 !data/.gitkeep
 uploads/thumbs/*
+uploads/fonts/*
+!uploads/fonts/.gitkeep
 *.log
 .DS_Store
 Thumbs.db

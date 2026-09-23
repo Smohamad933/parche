@@ -18,7 +18,7 @@ $cur = basename($_SERVER['SCRIPT_NAME']);
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title><?= isset($pageTitle) ? e($pageTitle) . ' — ' : '' ?>پنل مدیریت <?= e(setting('site_name', 'پارچینو')) ?></title>
 <meta name="robots" content="noindex, nofollow">
-<?= font_head_tags() ?>
+<?= font_head_tags('../assets/', '../') ?>
 <link rel="stylesheet" href="../assets/css/panel.css">
 </head>
 <body>

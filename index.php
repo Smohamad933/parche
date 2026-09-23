@@ -6,20 +6,14 @@ $featured = q("SELECT p.*, (SELECT path FROM product_images i WHERE i.product_id
                FROM products p WHERE p.status = 'active' AND p.is_featured = 1 ORDER BY p.id DESC LIMIT 8")->fetchAll();
 $newest = q("SELECT p.*, (SELECT path FROM product_images i WHERE i.product_id = p.id ORDER BY sort_order LIMIT 1) AS img
              FROM products p WHERE p.status = 'active' ORDER BY p.id DESC LIMIT 4")->fetchAll();
-$stats = [
-    'products' => (int)qv("SELECT COUNT(*) FROM products WHERE status='active'"),
-    'cats' => (int)qv("SELECT COUNT(*) FROM categories WHERE is_active=1"),
-    'customers' => (int)qv("SELECT COUNT(*) FROM users WHERE role='customer'"),
-    'orders' => (int)qv("SELECT COUNT(*) FROM orders"),
-];
 include __DIR__ . '/inc/header.php';
 ?>
 <section class="hero">
     <div class="wrap hero-in">
         <div class="hero-text">
-            <span class="hero-kicker"><?= icon('sparkles') ?> <?= e(setting('site_name')) ?> — فروشگاه اینترنتی پارچه</span>
-            <h1><?= e(setting('hero_title', 'هر پارچه‌ای که تصور می‌کنید، اینجاست')) ?></h1>
-            <p class="hero-sub"><?= e(setting('hero_subtitle')) ?></p>
+            <span class="hero-kicker"><?= icon('scissors') ?> انتخاب پارچه برای دوخت و دکور</span>
+            <h1><?= e(setting('hero_title', 'پارچه را ساده انتخاب کنید')) ?></h1>
+            <p class="hero-sub"><?= e(setting('hero_subtitle', 'پارچه‌های کاربردی و مجلسی را با قیمت هر متر ببینید، مقایسه کنید و سفارش بدهید.')) ?></p>
             <div class="hero-actions">
                 <a class="btn btn-gold btn-lg" href="category.php"><?= icon('shopping-bag') ?> مشاهده و خرید پارچه</a>
                 <a class="btn btn-hero-ghost btn-lg" href="track.php"><?= icon('search') ?> پیگیری سفارش</a>
@@ -33,18 +27,16 @@ include __DIR__ . '/inc/header.php';
         <div class="hero-visual">
             <div class="hero-img-wrap">
                 <img src="uploads/hero.jpg" alt="فروشگاه پارچه <?= e(setting('site_name')) ?>">
-                <div class="hero-chip hc-1"><?= icon('badge-check') ?><div><b>پارچه اصل</b><small>کنترل کیفیت‌شده</small></div></div>
-                <div class="hero-chip hc-2"><?= icon('truck') ?><div><b>ارسال فوری</b><small>ثبت همان روز</small></div></div>
             </div>
         </div>
     </div>
 </section>
 
 <section class="stats-strip wrap">
-    <div class="stat-s"><?= icon('shirt') ?><b><?= fa_num($stats['products']) ?>+</b><span>پارچه موجود</span></div>
-    <div class="stat-s"><?= icon('folder-tree') ?><b><?= fa_num($stats['cats']) ?></b><span>دسته‌بندی تخصصی</span></div>
-    <div class="stat-s"><?= icon('users') ?><b><?= fa_num($stats['customers']) ?>+</b><span>مشتری</span></div>
-    <div class="stat-s"><?= icon('clipboard-list') ?><b><?= fa_num($stats['orders']) ?>+</b><span>سفارش موفق</span></div>
+    <div class="stat-s"><?= icon('truck') ?><div><b>ارسال به سراسر ایران</b><span>ثبت و پیگیری سفارش</span></div></div>
+    <div class="stat-s"><?= icon('ruler') ?><div><b>فروش بر اساس متر</b><span>مقدار دقیق برای دوخت</span></div></div>
+    <div class="stat-s"><?= icon('badge-check') ?><div><b>توضیحات روشن</b><span>جنس، عرض و رنگ هر کالا</span></div></div>
+    <div class="stat-s"><?= icon('message-square') ?><div><b>پشتیبانی مستقیم</b><span><?= fa_num(en_num(setting('mobile', '09125085832'))) ?></span></div></div>
 </section>
 
 <section class="sec wrap">
@@ -103,10 +95,10 @@ include __DIR__ . '/inc/header.php';
 
 <section class="cta-strip wrap">
     <div class="cta-txt">
-        <h3><?= icon('store') ?> پارچه می‌فروشید؟</h3>
-        <p>محصولات خود را در <?= e(setting('site_name')) ?> عرضه کنید؛ پنل فروشندگی با فاکتور، انبار و مدیریت سفارش اختصاصی. برای شروع با پشتیبانی تماس بگیرید.</p>
+        <h3><?= icon('message-square') ?> برای انتخاب پارچه راهنمایی می‌خواهید؟</h3>
+        <p>اگر درباره جنس، رنگ یا مقدار سفارش سوالی دارید، قبل از خرید با ما تماس بگیرید. پاسخ‌گویی واقعی از طریق واتساپ انجام می‌شود.</p>
     </div>
-    <?php if (setting('mobile')): ?><a class="btn btn-gold" href="https://wa.me/<?= e(preg_replace('/^0/', '98', en_num(setting('mobile')))) ?>" target="_blank" rel="noopener"><?= icon('message-square') ?> گفتگو با ما</a><?php endif; ?>
+    <?php if (setting('mobile')): ?><a class="btn btn-gold" href="https://wa.me/<?= e(preg_replace('/^0/', '98', en_num(setting('mobile')))) ?>" target="_blank" rel="noopener">گفتگو در واتساپ</a><?php endif; ?>
 </section>
 
 <?php include __DIR__ . '/inc/footer.php'; ?>

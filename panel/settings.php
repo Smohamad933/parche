@@ -6,6 +6,49 @@ $uid = current_user()['id'];
 
 $settingKeys = ['site_name', 'site_tagline', 'hero_title', 'hero_subtitle', 'phone', 'mobile', 'email', 'address', 'instagram', 'telegram', 'whatsapp', 'shipping_flat', 'free_shipping_min', 'about_text', 'footer_note', 'currency', 'font_family', 'font_scale'];
 
+/* آپلود فونت فقط برای مدیر و فقط با نام تصادفی انجام می‌شود؛ نام فایل کاربر هرگز در مسیر ذخیره نمی‌شود. */
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'font_upload') {
+    csrf_verify();
+    $file = $_FILES['font_file'] ?? null;
+    $allowed = ['woff2', 'woff', 'ttf', 'otf'];
+    $error = '';
+    if (!$file || ($file['error'] ?? UPLOAD_ERR_NO_FILE) !== UPLOAD_ERR_OK) $error = 'فایل فونت انتخاب نشده یا بارگذاری آن ناموفق بود.';
+    $ext = $file ? strtolower(pathinfo((string)$file['name'], PATHINFO_EXTENSION)) : '';
+    if (!$error && !in_array($ext, $allowed, true)) $error = 'فرمت مجاز فونت: WOFF2، WOFF، TTF یا OTF.';
+    if (!$error && (int)$file['size'] > 8 * 1024 * 1024) $error = 'حجم فونت نباید بیشتر از ۸ مگابایت باشد.';
+    if (!$error) {
+        $dir = __DIR__ . '/../uploads/fonts';
+        if (!is_dir($dir)) @mkdir($dir, 0775, true);
+        $newFile = 'custom_' . bin2hex(random_bytes(8)) . '.' . $ext;
+        $target = $dir . '/' . $newFile;
+        if (!@move_uploaded_file($file['tmp_name'], $target)) $error = 'ذخیره فایل فونت روی سرور انجام نشد.';
+        else {
+            $old = custom_font_info();
+            if ($old) @unlink($old['path']);
+            $displayName = trim((string)$file['name']);
+            $displayName = preg_replace('/[^\\p{L}\\p{N} ._()\\-]+/u', '', $displayName);
+            $displayName = trim($displayName ?: 'فونت دلخواه');
+            q("DELETE FROM settings WHERE skey IN ('custom_font_file', 'custom_font_name')");
+            q("INSERT INTO settings (skey, svalue) VALUES (?,?), (?,?)", ['custom_font_file', $newFile, 'custom_font_name', $displayName]);
+            q("DELETE FROM settings WHERE skey = 'font_family'");
+            q("INSERT INTO settings (skey, svalue) VALUES ('font_family', 'custom')");
+            flash_set('s', 'فونت دلخواه ذخیره شد و روی سایت فعال شد.');
+        }
+    }
+    if ($error) flash_set('e', $error);
+    redirect('settings.php');
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'font_delete') {
+    csrf_verify();
+    if ($custom = custom_font_info()) @unlink($custom['path']);
+    q("DELETE FROM settings WHERE skey IN ('custom_font_file', 'custom_font_name')");
+    q("DELETE FROM settings WHERE skey = 'font_family'");
+    q("INSERT INTO settings (skey, svalue) VALUES ('font_family', 'vazirmatn')");
+    flash_set('s', 'فونت دلخواه حذف شد و فونت پیش‌فرض فعال شد.');
+    redirect('settings.php');
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'save') {
     csrf_verify();
     foreach ($settingKeys as $k) {
@@ -92,6 +135,29 @@ include __DIR__ . '/inc/header.php';
                 <label>رمز فعلی<input name="old_password" type="password" required></label>
                 <label>رمز جدید<input name="new_password" type="password" required minlength="6"></label>
                 <button class="btn btn-primary" type="submit">تغییر رمز</button>
+            </form>
+        </div>
+        <div class="p-box">
+            <h3><?= icon('palette') ?> فونت دلخواه</h3>
+            <p class="muted p-help">برای هماهنگ شدن ظاهر فروشگاه با برندتان، فایل فونت فارسی خودتان را بارگذاری کنید. فرمت‌های WOFF2، WOFF، TTF و OTF تا حجم ۸ مگابایت پذیرفته می‌شوند.</p>
+            <?php if ($custom = custom_font_info()): ?>
+                <div class="font-current">
+                    <span class="font-sample" style="font-family:ParcheCustom, sans-serif">Aa</span>
+                    <div><b><?= e($custom['name']) ?></b><small class="muted">فونت دلخواه فعال است</small></div>
+                </div>
+                <form method="post" class="font-delete-form">
+                    <?= csrf_field() ?>
+                    <input type="hidden" name="action" value="font_delete">
+                    <button class="btn btn-danger btn-sm" type="submit">حذف فونت دلخواه</button>
+                </form>
+            <?php else: ?>
+                <p class="p-note">در حال حاضر یکی از فونت‌های آماده در سایت استفاده می‌شود.</p>
+            <?php endif; ?>
+            <form method="post" enctype="multipart/form-data" class="p-form font-upload-form">
+                <?= csrf_field() ?>
+                <input type="hidden" name="action" value="font_upload">
+                <label>انتخاب فایل فونت<input type="file" name="font_file" accept=".woff2,.woff,.ttf,.otf" required></label>
+                <button class="btn btn-primary" type="submit"><?= icon('save') ?> بارگذاری و فعال‌سازی</button>
             </form>
         </div>
         <div class="p-box">

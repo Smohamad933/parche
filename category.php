@@ -6,8 +6,11 @@ $cat = $catId ? q1("SELECT * FROM categories WHERE id = ?", [$catId]) : null;
 if ($catId && !$cat) { flash_set('e', 'دسته‌بندی یافت نشد.'); redirect('category.php'); }
 
 $sort = $_GET['sort'] ?? 'new';
-$min = $_GET['min'] !== '' && isset($_GET['min']) ? (float)en_num($_GET['min']) : null;
-$max = $_GET['max'] !== '' && isset($_GET['max']) ? (float)en_num($_GET['max']) : null;
+/* اول isset را بررسی می‌کنیم؛ در صفحه دسته‌بندی بدون فیلتر نباید هشدار PHP نمایش داده شود. */
+$minInput = trim((string)($_GET['min'] ?? ''));
+$maxInput = trim((string)($_GET['max'] ?? ''));
+$min = $minInput !== '' ? (float)en_num($minInput) : null;
+$max = $maxInput !== '' ? (float)en_num($maxInput) : null;
 $inStock = !empty($_GET['stock']);
 
 $where = "p.status = 'active'";

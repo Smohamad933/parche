@@ -189,8 +189,20 @@ function stars($rating) {
 }
 
 /* ---------- فونت سایت (قابل تغییر از پنل) ---------- */
-function available_fonts() {
+function custom_font_info() {
+    $file = basename((string)setting('custom_font_file', ''));
+    if (!$file || !preg_match('/^custom_[a-f0-9]{16,32}\.(woff2?|ttf|otf)$/i', $file)) return null;
+    $path = __DIR__ . '/../uploads/fonts/' . $file;
+    if (!is_file($path)) return null;
     return [
+        'file' => $file,
+        'path' => $path,
+        'name' => setting('custom_font_name', 'فونت دلخواه'),
+        'ext' => strtolower(pathinfo($file, PATHINFO_EXTENSION)),
+    ];
+}
+function available_fonts() {
+    $fonts = [
         'vazirmatn' => ['label' => 'وزیرمتن (پیش‌فرض)',   'family' => 'Vazirmatn'],
         'shabnam'   => ['label' => 'شبنم',                'family' => 'Shabnam'],
         'sahel'     => ['label' => 'ساحل',                'family' => 'Sahel'],
@@ -200,12 +212,22 @@ function available_fonts() {
         'tanha'     => ['label' => 'طنها',                'family' => 'Tanha'],
         'tahoma'    => ['label' => 'تاهوما (سیستمی)',     'family' => 'Tahoma'],
     ];
+    if ($custom = custom_font_info()) {
+        $fonts['custom'] = ['label' => $custom['name'] . ' (فونت دلخواه)', 'family' => 'ParcheCustom'];
+    }
+    return $fonts;
 }
-function font_head_tags() {
+function font_head_tags($assetBase = 'assets/', $rootBase = '') {
     $fonts = available_fonts();
     $key = setting('font_family', 'vazirmatn');
     $f = $fonts[$key] ?? $fonts['vazirmatn'];
-    $scale = ['0.9' => '0.92', '1' => '1', '1.1' => '1.08'][setting('font_scale', '1')] ?? '1';
-    return '<link rel="stylesheet" href="assets/css/fonts.css">' . "\n"
-         . '<style>:root{--app-font:\'' . e($f['family']) . '\',Vazirmatn,Tahoma,\'Segoe UI\',sans-serif;--font-scale:' . $scale . ';}</style>';
+    $scaleKey = setting('font_scale', '1');
+    $scale = ['0.9' => '0.92', '1' => '1', '1.1' => '1.08'][$scaleKey] ?? '1';
+    $out = '<link rel="stylesheet" href="' . e($assetBase . 'css/fonts.css') . '">' . "\n";
+    if ($key === 'custom' && ($custom = custom_font_info())) {
+        $format = $custom['ext'] === 'woff2' ? 'woff2' : ($custom['ext'] === 'woff' ? 'woff' : ($custom['ext'] === 'otf' ? 'opentype' : 'truetype'));
+        $url = $rootBase . 'uploads/fonts/' . rawurlencode($custom['file']);
+        $out .= '<style>@font-face{font-family:\'ParcheCustom\';src:url(\'' . e($url) . '\') format(\'' . $format . '\');font-style:normal;font-weight:100 900;font-display:swap;}</style>' . "\n";
+    }
+    return $out . '<style>:root{--app-font:\'' . e($f['family']) . '\',Vazirmatn,Tahoma,\'Segoe UI\',sans-serif;--font-scale:' . $scale . ';}</style>';
 }
