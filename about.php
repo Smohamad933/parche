@@ -8,10 +8,10 @@ include __DIR__ . '/inc/header.php';
     <div class="about-text"><?= nl2br(e(setting('about_text'))) ?></div>
     <div class="about-contact">
         <h3>تماس با ما</h3>
-        <p>📍 <?= e(setting('address')) ?></p>
-        <p>☎ <?= e(setting('phone')) ?></p>
-        <p>📱 <?= e(setting('mobile')) ?></p>
-        <p>✉ <?= e(setting('email')) ?></p>
+        <p><?= icon('map-pin') ?> <?= e(setting('address')) ?></p>
+        <p><?= icon('phone') ?> <?= e(setting('phone')) ?></p>
+        <p><?= icon('smartphone') ?> <?= e(setting('mobile')) ?></p>
+        <p><?= icon('mail') ?> <?= e(setting('email')) ?></p>
         <p>
             <?php if (setting('instagram')): ?><a class="btn btn-ghost btn-sm" href="https://instagram.com/<?= e(setting('instagram')) ?>" target="_blank" rel="noopener">اینستاگرام</a><?php endif; ?>
             <?php if (setting('telegram')): ?><a class="btn btn-ghost btn-sm" href="https://t.me/<?= e(setting('telegram')) ?>" target="_blank" rel="noopener">تلگرام</a><?php endif; ?>

@@ -43,7 +43,7 @@ include __DIR__ . '/inc/header.php';
 ?>
 <div class="cols-2">
     <div class="p-box">
-        <h3><?= $selProduct ? '🔄 ثبت حرکت برای: ' . e($selProduct['name']) : '🔄 ثبت ورود/خروج انبار' ?></h3>
+        <h3><?= $selProduct ? icon('refresh-cw') . ' ثبت حرکت برای: ' . e($selProduct['name']) : icon('refresh-cw') . ' ثبت ورود/خروج انبار' ?></h3>
         <form method="post" class="p-form">
             <?= csrf_field() ?>
             <input type="hidden" name="action" value="adjust">
@@ -60,16 +60,16 @@ include __DIR__ . '/inc/header.php';
             <div class="row2">
                 <label>نوع حرکت
                     <select name="type">
-                        <option value="in">➕ ورود به انبار</option>
-                        <option value="out">➖ خروج از انبار</option>
+                        <option value="in">ورود به انبار (افزایش)</option>
+                        <option value="out">خروج از انبار (کاهش)</option>
                     </select>
                 </label>
                 <label>مقدار (متر)<input name="qty" dir="ltr" required placeholder="مثلاً 50"></label>
             </div>
             <label>توضیحات<input name="note" placeholder="مثلاً رسید خرید از نساجی البرز، پالت #۱۲۳"></label>
-            <button class="btn btn-primary" type="submit">💾 ثبت حرکت انبار</button>
+            <button class="btn btn-primary" type="submit"><?= icon('save') ?> ثبت حرکت انبار</button>
         </form>
-        <div class="p-note">📦 هر سفارش مشتری و هر لغو، خودکار در این دفتر ثبت می‌شود (نوع «order» و «return»).</div>
+        <div class="p-note"><?= icon('package') ?> هر سفارش مشتری و هر لغو، خودکار در این دفتر ثبت می‌شود (نوع «order» و «return»).</div>
     </div>
 
     <div class="p-box">

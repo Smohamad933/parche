@@ -27,10 +27,10 @@ $cart = cart_items();
 $pageTitle = 'سبد خرید';
 include __DIR__ . '/inc/header.php';
 ?>
-<h1 class="page-title">🛒 سبد خرید</h1>
+<h1 class="page-title"><?= icon('shopping-cart') ?> سبد خرید</h1>
 
 <?php if (!$cart['items']): ?>
-    <div class="empty">سبد خرید شما خالی است. <a href="category.php">مشاهده پارچه‌ها ←</a></div>
+    <div class="empty"><?= icon('shopping-cart', 'big') ?><br>سبد خرید شما خالی است. <a href="category.php">مشاهده پارچه‌ها ←</a></div>
 <?php else: ?>
 <form method="post">
     <?= csrf_field() ?>
@@ -52,7 +52,7 @@ include __DIR__ . '/inc/header.php';
                 </td>
                 <td><b><?= price($it['line_total']) ?></b></td>
                 <td>
-                    <button class="icon-btn" type="submit" name="remove_id" value="<?= (int)$p['id'] ?>" title="حذف">🗑</button>
+                    <button class="icon-btn" type="submit" name="remove_id" value="<?= (int)$p['id'] ?>" title="حذف"><?= icon('trash-2') ?></button>
                 </td>
             </tr>
         <?php endforeach; ?>

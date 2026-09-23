@@ -111,7 +111,7 @@ $checks = req_ok();
 </head>
 <body>
 <div class="box">
-    <h1>🧵 نصب فروشگاه پارچه</h1>
+    <h1><?= icon('scissors') ?> نصب فروشگاه پارچه</h1>
     <div class="sub">پیش از شروع، دیتابیس و حساب مدیر را پیکربندی کنید.</div>
 
     <?php foreach (flash_get() as $f): ?>
@@ -119,11 +119,11 @@ $checks = req_ok();
     <?php endforeach; ?>
 
     <?php if ($locked && !$done): ?>
-        <div class="note">🔒 نصب‌کننده قفل شده است. برای نصب مجدد، فایل <code>install/.locked</code> را حذف کنید.</div>
+        <div class="note"><?= icon('lock') ?> نصب‌کننده قفل شده است. برای نصب مجدد، فایل <code>install/.locked</code> را حذف کنید.</div>
         <a class="btn" href="../index.php">رفتن به فروشگاه</a>
         <a class="btn" style="background:#888" href="../panel/login.php">ورود به پنل مدیریت</a>
     <?php elseif ($done): ?>
-        <div class="note">✅ نصب با موفقیت انجام شد! فایل پیکربندی در <code>app/config.php</code> ذخیره و نصب‌کننده قفل شد.</div>
+        <div class="note"><?= icon('circle-check') ?> نصب با موفقیت انجام شد! فایل پیکربندی در <code>app/config.php</code> ذخیره و نصب‌کننده قفل شد.</div>
         <h3 style="margin-top:24px">اطلاعات ورود پنل مدیریت (فقط با لینک مستقیم):</h3>
         <p>آدرس پنل: <code><?= e(rtrim(dirname($_SERVER['SCRIPT_NAME']), '/install')) ?>/panel/login.php</code></p>
         <p>نام کاربری: <code><?= e($adminEmail ?: 'admin@parche.local') ?></code> — رمز همان رمزی است که وارد کردید.</p>
@@ -136,7 +136,7 @@ $checks = req_ok();
         <table>
             <?php foreach ($checks as $k => $c): ?>
             <tr><th><?= ['php'=>'نسخه PHP','pdo_mysql'=>'افزونه MySQL (PDO)','pdo_sqlite'=>'افزونه SQLite (PDO)','mbstring'=>'افزونه mbstring','uploads'=>'قابل نوشتن بودن uploads','data'=>'قابل نوشتن بودن data','config'=>'قابل نوشتن بودن app'][$k] ?></th>
-                <td class="<?= $c[0] ? 'ok' : 'bad' ?>"><?= $c[0] ? '✔ ' : '✖ ' ?><?= e($c[1]) ?></td></tr>
+                <td class="<?= $c[0] ? 'ok' : 'bad' ?>"><?= $c[0] ? icon('check') : icon('x') ?><?= e($c[1]) ?></td></tr>
             <?php endforeach; ?>
         </table>
 
@@ -185,7 +185,7 @@ $checks = req_ok();
             </label>
             </div>
 
-            <button class="btn" type="submit">🚀 شروع نصب</button>
+            <button class="btn" type="submit"><?= icon('rocket') ?> شروع نصب</button>
         </form>
     <?php endif; ?>
 </div>

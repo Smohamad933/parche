@@ -55,7 +55,7 @@ include __DIR__ . '/inc/header.php';
             <span class="muted">کد: <b dir="ltr"><?= e($p['code']) ?></b></span>
             <?php if ($p['shop_name']): ?><span class="muted">فروشنده: <b><?= e($p['shop_name']) ?></b></span><?php endif; ?>
             <?php if ($ratingAvg): ?><span class="rate"><?= stars($ratingAvg) ?> <small><?= fa_num(number_format($ratingAvg, 1)) ?></small></span><?php endif; ?>
-            <span class="muted">👁 <?= fa_num((int)$p['views']) ?> بازدید</span>
+            <span class="muted"><?= icon('eye') ?> <?= fa_num((int)$p['views']) ?> بازدید</span>
         </div>
 
         <div class="price-box">
@@ -93,14 +93,14 @@ include __DIR__ . '/inc/header.php';
                 <input type="number" name="qty" value="<?= e(rtrim(rtrim((string)$p['min_order'], '0'), '.')) ?>" min="<?= e(rtrim(rtrim((string)$p['min_order'], '0'), '.')) ?>" max="<?= e((string)$p['stock']) ?>" step="0.5" dir="ltr">
                 <button type="button" onclick="qtyStep(this,+0.5)">+</button>
             </div>
-            <button class="btn btn-primary btn-lg" type="submit">🛒 افزودن به سبد خرید</button>
+            <button class="btn btn-primary btn-lg" type="submit"><?= icon('shopping-cart') ?> افزودن به سبد خرید</button>
         </form>
         <?php endif; ?>
 
         <div class="trust">
-            <span>✅ کنترل کیفیت قبل از ارسال</span>
-            <span>↩ ۷ روز مهلت مرجوعی</span>
-            <span>🚚 ارسال سریع از بازار تهران</span>
+            <span><?= icon('badge-check') ?> کنترل کیفیت قبل از ارسال</span>
+            <span><?= icon('rotate-ccw') ?> ۷ روز مهلت مرجوعی</span>
+            <span><?= icon('truck') ?> ارسال سریع از بازار تهران</span>
         </div>
     </div>
 </div>

@@ -21,7 +21,7 @@ include __DIR__ . '/inc/header.php';
 <?php if ($q === ''): ?>
     <div class="empty">عبارتی برای جستجو وارد کنید.</div>
 <?php elseif (!$rows): ?>
-    <div class="empty">نتیجه‌ای یافت نشد. <a href="category.php">مشاهده همه پارچه‌ها ←</a></div>
+    <div class="empty">نتیجه‌ای یافت نشد. <a href="category.php">مشاهده همه پارچه‌ها <?= icon('arrow-left') ?></a></div>
 <?php else: ?>
     <p class="muted"><?= fa_num($total) ?> نتیجه پیدا شد.</p>
     <div class="grid">

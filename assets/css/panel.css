@@ -11,10 +11,16 @@
     --p-danger: #c0392b;
 }
 * { box-sizing: border-box; }
-body { margin: 0; background: var(--p-bg); color: var(--p-ink); font-family: Vazirmatn, Tahoma, 'Segoe UI', sans-serif; font-size: 14px; line-height: 1.9; }
+body { margin: 0; background: var(--p-bg); color: var(--p-ink); font-family: var(--app-font, Vazirmatn), Tahoma, 'Segoe UI', sans-serif; font-size: 14px; line-height: 1.9; zoom: var(--font-scale, 1); }
 a { color: var(--p-primary); text-decoration: none; }
 .muted { color: var(--p-muted); }
 .spacer { flex: 1; }
+.ic { width: 1.15em; height: 1.15em; vertical-align: -0.2em; flex: none; }
+.btn .ic { vertical-align: -0.28em; }
+.ic.st-on { color: var(--p-gold); fill: currentColor; }
+.p-brand .ic { width: 22px; height: 22px; vertical-align: -4px; color: #7fc4ae; }
+.stat .ico .ic { width: 27px; height: 27px; }
+h3 .ic { color: var(--p-primary); }
 
 .panel { display: grid; grid-template-columns: 250px 1fr; min-height: 100vh; }
 .p-side { background: var(--p-side); color: #cfd8de; display: flex; flex-direction: column; position: sticky; top: 0; height: 100vh; overflow-y: auto; }

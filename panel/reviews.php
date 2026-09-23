@@ -23,7 +23,7 @@ $rows = q("SELECT r.*, p.name AS pname FROM reviews r JOIN products p ON p.id = 
 include __DIR__ . '/inc/header.php';
 ?>
 <div class="p-box">
-    <h3>⭐ نظرات مشتریان</h3>
+    <h3><?= icon('star') ?> نظرات مشتریان</h3>
     <table class="p-table">
         <thead><tr><th>محصول</th><th>کاربر</th><th>امتیاز</th><th>متن</th><th>تاریخ</th><th>وضعیت</th><th>عملیات</th></tr></thead>
         <tbody>

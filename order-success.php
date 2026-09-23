@@ -9,7 +9,7 @@ $pageTitle = 'سفارش ثبت شد';
 include __DIR__ . '/inc/header.php';
 ?>
 <div class="success-box">
-    <div class="success-ico">✅</div>
+    <div class="success-ico"><?= icon('circle-check') ?></div>
     <h1>سفارش شما با موفقیت ثبت شد!</h1>
     <p>کد سفارش شما: <b class="order-code" dir="ltr"><?= e($order['code']) ?></b></p>
     <p class="muted">این کد را برای پیگیری نگه دارید. به‌زودی برای هماهنگی ارسال و پرداخت با شما تماس می‌گیریم.</p>
@@ -34,13 +34,13 @@ include __DIR__ . '/inc/header.php';
     <h3>فاکتور(های) این سفارش</h3>
     <ul class="inv-links">
         <?php foreach ($invoices as $inv): ?>
-            <li><a href="invoice.php?code=<?= e($inv['code']) ?>" target="_blank">🧾 فاکتور <?= e($inv['code']) ?> — <?= price($inv['total']) ?></a></li>
+            <li><a href="invoice.php?code=<?= e($inv['code']) ?>" target="_blank"><?= icon('receipt') ?> فاکتور <?= e($inv['code']) ?> — <?= price($inv['total']) ?></a></li>
         <?php endforeach; ?>
     </ul>
     <?php endif; ?>
 
     <div class="hero-actions" style="margin-top:20px">
-        <a class="btn btn-primary" href="track.php?code=<?= e($order['code']) ?>">پیگیری سفارش</a>
+        <a class="btn btn-primary" href="track.php?code=<?= e($order['code']) ?>">پیگیری سفارش <?= icon('arrow-left') ?></a>
         <a class="btn btn-ghost" href="category.php">ادامه خرید</a>
     </div>
 </div>

@@ -40,7 +40,7 @@ include __DIR__ . '/inc/header.php';
 ?>
 <div class="cols-2">
     <div class="p-box">
-        <h3>➕ کد تخفیف جدید</h3>
+        <h3><?= icon('plus') ?> کد تخفیف جدید</h3>
         <form method="post" class="p-form">
             <?= csrf_field() ?>
             <input type="hidden" name="action" value="save">

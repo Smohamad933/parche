@@ -139,7 +139,7 @@ include __DIR__ . '/inc/header.php';
         </select>
         <button class="btn btn-primary btn-sm" type="submit">فیلتر</button>
         <span class="spacer"></span>
-        <a class="btn btn-primary" href="products.php?edit=0">➕ محصول جدید</a>
+        <a class="btn btn-primary" href="products.php?edit=0"><?= icon('plus') ?> محصول جدید</a>
     </form>
 
     <table class="p-table">
@@ -162,7 +162,7 @@ include __DIR__ . '/inc/header.php';
                 </form>
                 <form method="post" style="display:inline"><?= csrf_field() ?>
                     <input type="hidden" name="action" value="feature"><input type="hidden" name="id" value="<?= (int)$p['id'] ?>">
-                    <button class="tag tag-<?= (int)$p['is_featured'] ? 'b' : 'w' ?>" title="پیشنهادی صفحه اصلی"><?= (int)$p['is_featured'] ? '★ پیشنهادی' : 'معمولی' ?></button>
+                    <button class="tag tag-<?= (int)$p['is_featured'] ? 'b' : 'w' ?>" title="پیشنهادی صفحه اصلی"><?= (int)$p['is_featured'] ? icon('star','st-on') . ' پیشنهادی' : 'معمولی' ?></button>
                 </form>
             </td>
             <td>
@@ -188,7 +188,7 @@ include __DIR__ . '/inc/header.php';
 
 <?php if ($edit !== null || isset($_GET['edit']) && $_GET['edit'] === '0'): ?>
 <div class="p-box" id="form">
-    <h3><?= $edit ? '✏️ ویرایش محصول: ' . e($edit['name']) : '➕ افزودن محصول جدید' ?></h3>
+    <h3><?= $edit ? icon('pencil') . ' ویرایش محصول: ' . e($edit['name']) : icon('plus') . ' افزودن محصول جدید' ?></h3>
     <form method="post" enctype="multipart/form-data" class="p-form">
         <?= csrf_field() ?>
         <input type="hidden" name="action" value="save">
@@ -249,7 +249,7 @@ include __DIR__ . '/inc/header.php';
         <label>تصاویر (می‌توانید چند فایل انتخاب کنید)
             <input type="file" name="images[]" multiple accept="image/*">
         </label>
-        <button class="btn btn-primary btn-lg" type="submit">💾 ذخیره محصول</button>
+        <button class="btn btn-primary btn-lg" type="submit"><?= icon('save') ?> ذخیره محصول</button>
     </form>
 
     <?php if ($edit && $editImgs): ?>

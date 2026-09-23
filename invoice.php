@@ -21,16 +21,16 @@ include __DIR__ . '/inc/header.php';
 ?>
 <div class="invoice <?= $print ? 'printing' : '' ?>">
     <div class="inv-actions no-print">
-        <button class="btn btn-primary" onclick="window.print()">🖨 چاپ فاکتور</button>
-        <?php if ($order): ?><a class="btn btn-ghost" href="track.php?code=<?= e($order['code']) ?>">پیگیری سفارش</a><?php endif; ?>
+        <button class="btn btn-primary" onclick="window.print()"><?= icon('printer') ?> چاپ فاکتور</button>
+        <?php if ($order): ?><a class="btn btn-ghost" href="track.php?code=<?= e($order['code']) ?>">پیگیری سفارش <?= icon('arrow-left') ?></a><?php endif; ?>
     </div>
 
     <div class="inv-sheet" id="invSheet">
         <div class="inv-head">
             <div>
-                <h2>🧵 <?= e(setting('site_name', 'پارچه‌سرا')) ?></h2>
+                <h2><?= icon('scissors') ?> <?= e(setting('site_name', 'پارچه‌سرا')) ?></h2>
                 <p class="muted"><?= e(setting('address')) ?></p>
-                <p class="muted">☎ <?= e(setting('phone')) ?></p>
+                <p class="muted"><?= icon('phone') ?> <?= e(setting('phone')) ?></p>
             </div>
             <div class="inv-meta">
                 <h3>فاکتور فروش</h3>
@@ -43,8 +43,8 @@ include __DIR__ . '/inc/header.php';
 
         <table class="inv-parties">
             <tr>
-                <td><b>فروشنده:</b> <?= e($seller['shop_name'] ?: setting('site_name', 'پارچه‌سرا')) ?><?php if ($seller && $seller['phone']): ?> — ☎ <?= e($seller['phone']) ?><?php endif; ?></td>
-                <td><b>خریدار:</b> <?= e($inv['customer_name']) ?> — ☎ <?= e($inv['phone']) ?></td>
+                <td><b>فروشنده:</b> <?= e($seller['shop_name'] ?: setting('site_name', 'پارچه‌سرا')) ?><?php if ($seller && $seller['phone']): ?> — <?= icon('phone') ?> <?= e($seller['phone']) ?><?php endif; ?></td>
+                <td><b>خریدار:</b> <?= e($inv['customer_name']) ?> — <?= icon('phone') ?> <?= e($inv['phone']) ?></td>
             </tr>
             <?php if ($order): ?>
             <tr>

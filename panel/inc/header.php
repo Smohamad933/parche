@@ -18,42 +18,42 @@ $cur = basename($_SERVER['SCRIPT_NAME']);
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title><?= isset($pageTitle) ? e($pageTitle) . ' — ' : '' ?>پنل مدیریت <?= e(setting('site_name', 'پارچه‌سرا')) ?></title>
 <meta name="robots" content="noindex, nofollow">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css">
+<?= font_head_tags() ?>
 <link rel="stylesheet" href="../assets/css/panel.css">
 </head>
 <body>
 <div class="panel">
     <aside class="p-side">
-        <div class="p-brand">🧵 <b>پنل <?= $isAdmin ? 'مدیریت' : 'فروشنده' ?></b></div>
+        <div class="p-brand"><?= icon('scissors') ?> <b>پنل <?= $isAdmin ? 'مدیریت' : 'فروشنده' ?></b></div>
         <nav>
-            <a class="<?= $cur === 'index.php' ? 'on' : '' ?>" href="index.php">📊 داشبورد</a>
+            <a class="<?= $cur === 'index.php' ? 'on' : '' ?>" href="index.php"><?= icon('layout-dashboard') ?> داشبورد</a>
             <?php if ($isAdmin): ?>
-            <a class="<?= $cur === 'categories.php' ? 'on' : '' ?>" href="categories.php">🗂 دسته‌بندی‌ها</a>
+            <a class="<?= $cur === 'categories.php' ? 'on' : '' ?>" href="categories.php"><?= icon('folder-tree') ?> دسته‌بندی‌ها</a>
             <?php endif; ?>
-            <a class="<?= $cur === 'products.php' ? 'on' : '' ?>" href="products.php">🧶 محصولات
+            <a class="<?= $cur === 'products.php' ? 'on' : '' ?>" href="products.php"><?= icon('shirt') ?> محصولات
                 <?php $pc = is_seller() ? (int)qv("SELECT COUNT(*) FROM products WHERE seller_id=?", [$u['id']]) : (int)qv("SELECT COUNT(*) FROM products"); ?>
                 <span class="pill"><?= fa_num($pc) ?></span>
             </a>
-            <a class="<?= $cur === 'inventory.php' ? 'on' : '' ?>" href="inventory.php">📦 انبار و موجودی</a>
-            <a class="<?= $cur === 'orders.php' ? 'on' : '' ?>" href="orders.php">🧾 سفارش‌ها
+            <a class="<?= $cur === 'inventory.php' ? 'on' : '' ?>" href="inventory.php"><?= icon('package') ?> انبار و موجودی</a>
+            <a class="<?= $cur === 'orders.php' ? 'on' : '' ?>" href="orders.php"><?= icon('clipboard-list') ?> سفارش‌ها
                 <?php if ($pendingOrders): ?><span class="pill warn"><?= fa_num($pendingOrders) ?></span><?php endif; ?>
             </a>
-            <a class="<?= $cur === 'invoices.php' ? 'on' : '' ?>" href="invoices.php">💳 فاکتورها</a>
+            <a class="<?= $cur === 'invoices.php' ? 'on' : '' ?>" href="invoices.php"><?= icon('receipt') ?> فاکتورها</a>
             <?php if ($isAdmin): ?>
-            <a class="<?= $cur === 'customers.php' ? 'on' : '' ?>" href="customers.php">👥 مشتریان</a>
-            <a class="<?= $cur === 'sellers.php' ? 'on' : '' ?>" href="sellers.php">🏬 فروشندگان</a>
-            <a class="<?= $cur === 'coupons.php' ? 'on' : '' ?>" href="coupons.php">🎟 کدهای تخفیف</a>
+            <a class="<?= $cur === 'customers.php' ? 'on' : '' ?>" href="customers.php"><?= icon('users') ?> مشتریان</a>
+            <a class="<?= $cur === 'sellers.php' ? 'on' : '' ?>" href="sellers.php"><?= icon('store') ?> فروشندگان</a>
+            <a class="<?= $cur === 'coupons.php' ? 'on' : '' ?>" href="coupons.php"><?= icon('ticket') ?> کدهای تخفیف</a>
             <?php endif; ?>
-            <a class="<?= $cur === 'reviews.php' ? 'on' : '' ?>" href="reviews.php">⭐ نظرات
+            <a class="<?= $cur === 'reviews.php' ? 'on' : '' ?>" href="reviews.php"><?= icon('star') ?> نظرات
                 <?php if ($pendingReviews): ?><span class="pill warn"><?= fa_num($pendingReviews) ?></span><?php endif; ?>
             </a>
-            <a class="<?= $cur === 'messages.php' ? 'on' : '' ?>" href="messages.php">💬 پیام‌ها
+            <a class="<?= $cur === 'messages.php' ? 'on' : '' ?>" href="messages.php"><?= icon('message-square') ?> پیام‌ها
                 <?php if ($unread): ?><span class="pill warn"><?= fa_num($unread) ?></span><?php endif; ?>
             </a>
             <?php if ($isAdmin): ?>
-            <a class="<?= $cur === 'settings.php' ? 'on' : '' ?>" href="settings.php">⚙️ تنظیمات</a>
+            <a class="<?= $cur === 'settings.php' ? 'on' : '' ?>" href="settings.php"><?= icon('settings') ?> تنظیمات</a>
             <?php endif; ?>
-            <a href="../index.php" target="_blank">🌐 مشاهده سایت</a>
+            <a href="../index.php" target="_blank"><?= icon('globe') ?> مشاهده سایت</a>
         </nav>
         <div class="p-side-foot">
             <div class="p-user">

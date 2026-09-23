@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($r === true) {
             $u = auth_attempt($email ?: $phone, $pass);
             auth_login($u);
-            flash_set('s', 'ثبت‌نام انجام شد؛ خوش آمدید! 🎉');
+            flash_set('s', 'ثبت‌نام انجام شد؛ خوش آمدید!');
             redirect('account.php');
         } else {
             $errors[] = $r[1];

@@ -42,7 +42,7 @@ if ($tab === 'messages' && $_SERVER['REQUEST_METHOD'] === 'POST') {
         q("INSERT INTO messages (sender_id, receiver_id, subject, body, is_read, created_at) VALUES (?,?,?,?,0,?)",
           [$u['id'], $toId, $subject, $body, now()]);
         if ($replyTo) q("UPDATE messages SET is_read = 1 WHERE id = ? AND receiver_id = ?", [$replyTo, $u['id']]);
-        flash_set('s', 'پیام شما ارسال شد ✅');
+        flash_set('s', 'پیام شما ارسال شد.');
         redirect('account.php?tab=messages');
     }
 }
@@ -81,10 +81,10 @@ include __DIR__ . '/inc/header.php';
             <div><b><?= e($u['name']) ?></b><br><small class="muted"><?= e($u['email'] ?: $u['phone']) ?></small></div>
         </div>
         <?php foreach ([
-            'dashboard' => '📊 پیشخوان',
-            'orders' => '📦 سفارش‌های من',
-            'messages' => '💬 پیام‌ها' . ($stats['unread'] ? ' <b class="badge-msg">' . fa_num($stats['unread']) . '</b>' : ''),
-            'profile' => '⚙️ پروفایل',
+            'dashboard' => icon('layout-dashboard') . ' پیشخوان',
+            'orders' => icon('package') . ' سفارش‌های من',
+            'messages' => icon('message-square') . ' پیام‌ها' . ($stats['unread'] ? ' <b class="badge-msg">' . fa_num($stats['unread']) . '</b>' : ''),
+            'profile' => icon('settings') . ' پروفایل',
         ] as $k => $lbl): ?>
             <a class="acc-link <?= $tab === $k || ($k === 'orders' && $tab === 'order') ? 'on' : '' ?>" href="account.php?tab=<?= $k ?>"><?= $lbl ?></a>
         <?php endforeach; ?>
@@ -92,7 +92,7 @@ include __DIR__ . '/inc/header.php';
 
     <section class="acc-body">
     <?php if ($tab === 'dashboard'): ?>
-        <h1>سلام <?= e($u['name']) ?> 👋</h1>
+        <h1>سلام <?= e($u['name']) ?></h1>
         <div class="acc-cards">
             <div class="acc-card"><b><?= fa_num($stats['orders']) ?></b><span>سفارش</span></div>
             <div class="acc-card"><b><?= fa_num($stats['unread']) ?></b><span>پیام خوانده‌نشده</span></div>
@@ -111,7 +111,7 @@ include __DIR__ . '/inc/header.php';
 
     <?php elseif ($tab === 'orders'): ?>
         <h1>سفارش‌های من</h1>
-        <?php if (!$orders): ?><div class="empty">هنوز سفارشی ثبت نکرده‌اید. <a href="category.php">شروع خرید ←</a></div><?php else: ?>
+        <?php if (!$orders): ?><div class="empty">هنوز سفارشی ثبت نکرده‌اید. <a href="category.php">شروع خرید <?= icon('arrow-left') ?></a></div><?php else: ?>
         <table class="cart-table">
             <thead><tr><th>کد</th><th>تاریخ</th><th>مبلغ</th><th>وضعیت</th><th></th></tr></thead>
             <tbody>
@@ -153,7 +153,7 @@ include __DIR__ . '/inc/header.php';
         <h3>فاکتورها</h3>
         <ul class="inv-links">
         <?php foreach ($orderInvs as $inv): ?>
-            <li><a href="invoice.php?code=<?= e($inv['code']) ?>" target="_blank">🧾 <?= e($inv['code']) ?> — <?= price($inv['total']) ?> (<?= invoice_status_label($inv['status']) ?>)</a></li>
+            <li><a href="invoice.php?code=<?= e($inv['code']) ?>" target="_blank"><?= icon('receipt') ?> <?= e($inv['code']) ?> — <?= price($inv['total']) ?> (<?= invoice_status_label($inv['status']) ?>)</a></li>
         <?php endforeach; ?>
         </ul>
         <?php endif; ?>
@@ -164,7 +164,7 @@ include __DIR__ . '/inc/header.php';
         </ul>
 
     <?php elseif ($tab === 'message' && $viewMsg): ?>
-        <h1>💬 <?= e($viewMsg['subject']) ?></h1>
+        <h1><?= icon('message-square') ?> <?= e($viewMsg['subject']) ?></h1>
         <div class="msg-view">
             <div class="msg-bubble <?= $viewMsg['sender_id'] == $u['id'] ? 'mine' : '' ?>">
                 <div class="msg-meta"><?= $viewMsg['sender_id'] == $u['id'] ? 'شما' : e($viewMsg['sname'] ?: 'پشتیبانی') ?> · <?= jdate_human($viewMsg['created_at']) ?></div>
@@ -183,7 +183,7 @@ include __DIR__ . '/inc/header.php';
         </form>
 
     <?php elseif ($tab === 'messages'): ?>
-        <h1>💬 پیام‌ها</h1>
+        <h1><?= icon('message-square') ?> پیام‌ها</h1>
         <div class="msg-cols">
             <div>
                 <h3>دریافتی</h3>
@@ -218,7 +218,7 @@ include __DIR__ . '/inc/header.php';
         </form>
 
     <?php elseif ($tab === 'profile'): ?>
-        <h1>⚙️ پروفایل</h1>
+        <h1><?= icon('settings') ?> پروفایل</h1>
         <form method="post" class="profile-form">
             <?= csrf_field() ?>
             <div class="row2">

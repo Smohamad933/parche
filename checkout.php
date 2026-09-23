@@ -97,7 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             tx_commit();
             unset($_SESSION['cart'], $_SESSION['coupon']);
-            flash_set('s', "سفارش شما با کد $code ثبت شد ✅");
+            flash_set('s', "سفارش شما با کد $code ثبت شد.");
             redirect('order-success.php?code=' . urlencode($code));
         } catch (Throwable $ex) {
             tx_rollback();
@@ -147,9 +147,9 @@ include __DIR__ . '/inc/header.php';
         </div>
 
         <h3>پرداخت</h3>
-        <div class="pay-note">💳 پرداخت پس از تایید سفارش توسط فروشگاه انجام می‌شود؛ کارشناسان ما برای هماهنگی پرداخت (کارت به کارت / درگاه) با شما تماس می‌گیرند.</div>
+        <div class="pay-note"><?= icon('credit-card') ?> پرداخت پس از تایید سفارش توسط فروشگاه انجام می‌شود؛ کارشناسان ما برای هماهنگی پرداخت (کارت به کارت / درگاه) با شما تماس می‌گیرند.</div>
 
-        <button class="btn btn-primary btn-lg btn-block" type="submit">✅ ثبت نهایی سفارش</button>
+        <button class="btn btn-primary btn-lg btn-block" type="submit"><?= icon('check') ?> ثبت نهایی سفارش</button>
     </form>
 
     <aside class="checkout-sum">

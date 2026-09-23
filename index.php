@@ -20,9 +20,9 @@ include __DIR__ . '/inc/header.php';
         <p><?= e(setting('hero_subtitle')) ?></p>
         <div class="hero-actions">
             <a class="btn btn-primary" href="category.php">مشاهده همه پارچه‌ها</a>
-            <a class="btn btn-ghost" href="track.php">پیگیری سفارش</a>
+            <a class="btn btn-ghost" href="track.php">پیگیری سفارش <?= icon('arrow-left') ?></a>
         </div>
-        <div class="coupon-chip">🎁 کد تخفیف اولین خرید: <b dir="ltr">WELCOME10</b> (۱۰٪)</div>
+        <div class="coupon-chip"><?= icon('gift') ?> کد تخفیف اولین خرید: <b dir="ltr">WELCOME10</b> (۱۰٪)</div>
     </div>
     <div class="hero-img" style="background-image:url('uploads/hero.jpg')"></div>
 </section>
@@ -39,7 +39,7 @@ include __DIR__ . '/inc/header.php';
     <div class="cat-cards">
         <?php foreach (category_tree() as $top): ?>
         <a class="cat-card" href="category.php?id=<?= (int)$top['id'] ?>">
-            <span class="cat-emoji"><?= ['پارچه‌های طبیعی'=>'🌿','پارچه‌های شیمیایی و براق'=>'✨','پارچه‌های مزون و مجلسی'=>'👑','پارچه‌های کاربردی'=>'🧶'][$top['name']] ?? '🧵' ?></span>
+            <span class="cat-ico"><?= icon(['پارچه‌های طبیعی'=>'leaf','پارچه‌های شیمیایی و براق'=>'gem','پارچه‌های مزون و مجلسی'=>'crown','پارچه‌های کاربردی'=>'shirt'][$top['name']] ?? 'scissors') ?></span>
             <b><?= e($top['name']) ?></b>
             <span class="cat-children">
                 <?php foreach (array_slice($top['children'], 0, 4) as $ch): ?>
@@ -54,7 +54,7 @@ include __DIR__ . '/inc/header.php';
 <section class="sec">
     <div class="sec-head">
         <h2 class="sec-title">پارچه‌های پیشنهادی</h2>
-        <a class="more" href="category.php?sort=popular">مشاهده همه ←</a>
+        <a class="more" href="category.php?sort=popular">مشاهده همه <?= icon('arrow-left') ?></a>
     </div>
     <div class="grid">
         <?php foreach ($featured as $p) include __DIR__ . '/inc/product-card.php'; ?>
@@ -64,7 +64,7 @@ include __DIR__ . '/inc/header.php';
 <section class="sec">
     <div class="sec-head">
         <h2 class="sec-title">جدیدترین پارچه‌ها</h2>
-        <a class="more" href="category.php">مشاهده همه ←</a>
+        <a class="more" href="category.php">مشاهده همه <?= icon('arrow-left') ?></a>
     </div>
     <div class="grid">
         <?php foreach ($newest as $p) include __DIR__ . '/inc/product-card.php'; ?>

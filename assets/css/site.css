@@ -184,7 +184,7 @@ img { max-width: 100%; }
 .thumbs img:hover { border-color: var(--primary); }
 .pinfo h1 { margin: 0 0 8px; font-size: 24px; }
 .pinfo-sub { display: flex; gap: 16px; flex-wrap: wrap; font-size: 13px; margin-bottom: 14px; align-items: center; }
-.star { color: #d5d9dd; } .star.on { color: var(--gold); }
+.panel .rate .ic, .rate .ic { width: 15px; height: 15px; }
 .price-box { background: var(--bg); border-radius: 12px; padding: 14px 18px; margin: 12px 0; }
 .price-box del { color: var(--muted); display: block; font-size: 13px; }
 .price-now b { font-size: 26px; color: var(--primary-dark); }
@@ -236,7 +236,8 @@ img { max-width: 100%; }
 
 /* ---------- سفارش موفق/پیگیری ---------- */
 .success-box { background: #fff; border-radius: var(--radius); box-shadow: var(--shadow); padding: 34px; text-align: center; }
-.success-ico { font-size: 52px; }
+.success-ico { display: flex; justify-content: center; }
+.success-ico .ic { width: 56px; height: 56px; color: #188a42; }
 .order-code { font-size: 22px; background: var(--bg); padding: 4px 16px; border-radius: 10px; }
 .order-sum-box { text-align: right; max-width: 640px; margin: 22px auto 0; }
 .inv-links { list-style: none; padding: 0; }
@@ -332,6 +333,14 @@ button.tag { cursor: pointer; font: inherit; font-size: 12px; font-weight: bold;
     .account { grid-template-columns: 1fr; }
     .acc-side { position: static; }
     .about { grid-template-columns: 1fr; }
+    .msg-cols { grid-template-columns: 1fr; }
+    .site-footer .cols { grid-template-columns: 1fr; }
+    .row3 { grid-template-columns: 1fr 1fr; }
+    .cart-table { display: block; overflow-x: auto; }
+    .mainbar { flex-wrap: wrap; }
+    .searchbox { order: 3; min-width: 100%; }
+}
+lumns: 1fr; }
     .msg-cols { grid-template-columns: 1fr; }
     .site-footer .cols { grid-template-columns: 1fr; }
     .row3 { grid-template-columns: 1fr 1fr; }

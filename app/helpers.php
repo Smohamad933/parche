@@ -4,6 +4,8 @@
  */
 if (!defined('PARCHE')) exit;
 
+require_once __DIR__ . '/icons.php';
+
 /* ---------- خروجی امن ---------- */
 function e($s) { return htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8'); }
 
@@ -182,6 +184,28 @@ function pad_code($prefix, $id) { return $prefix . str_pad((string)$id, 6, '0', 
 /* ---------- ستاره امتیاز ---------- */
 function stars($rating) {
     $out = '';
-    for ($i = 1; $i <= 5; $i++) $out .= '<span class="' . ($i <= round($rating) ? 'star on' : 'star') . '">★</span>';
+    for ($i = 1; $i <= 5; $i++) $out .= icon('star', $i <= round($rating) ? 'st-on' : 'st-off');
     return $out;
+}
+
+/* ---------- فونت سایت (قابل تغییر از پنل) ---------- */
+function available_fonts() {
+    return [
+        'vazirmatn' => ['label' => 'وزیرمتن (پیش‌فرض)',   'family' => 'Vazirmatn'],
+        'shabnam'   => ['label' => 'شبنم',                'family' => 'Shabnam'],
+        'sahel'     => ['label' => 'ساحل',                'family' => 'Sahel'],
+        'samim'     => ['label' => 'صمیم',                'family' => 'Samim'],
+        'parastoo'  => ['label' => 'پرستو',               'family' => 'Parastoo'],
+        'gandom'    => ['label' => 'گندم',                'family' => 'Gandom'],
+        'tanha'     => ['label' => 'طنها',                'family' => 'Tanha'],
+        'tahoma'    => ['label' => 'تاهوما (سیستمی)',     'family' => 'Tahoma'],
+    ];
+}
+function font_head_tags() {
+    $fonts = available_fonts();
+    $key = setting('font_family', 'vazirmatn');
+    $f = $fonts[$key] ?? $fonts['vazirmatn'];
+    $scale = ['0.9' => '0.92', '1' => '1', '1.1' => '1.08'][setting('font_scale', '1')] ?? '1';
+    return '<link rel="stylesheet" href="assets/css/fonts.css">' . "\n"
+         . '<style>:root{--app-font:\'' . e($f['family']) . '\',Vazirmatn,Tahoma,\'Segoe UI\',sans-serif;--font-scale:' . $scale . ';}</style>';
 }

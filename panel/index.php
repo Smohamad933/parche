@@ -90,14 +90,14 @@ foreach ($rows as $r) $statusCounts[$r['status']] = (int)$r['c'];
 include __DIR__ . '/inc/header.php';
 ?>
 <div class="stat-cards">
-    <div class="stat"><span class="ico">🧾</span><div><b><?= price($today) ?></b><small>فروش امروز</small></div></div>
-    <div class="stat"><span class="ico">📅</span><div><b><?= price($month) ?></b><small>فروش این ماه</small></div></div>
-    <div class="stat"><span class="ico">📦</span><div><b><?= fa_num($counts['orders']) ?></b><small>کل سفارش‌ها</small></div></div>
-    <div class="stat"><span class="ico">🧶</span><div><b><?= fa_num($counts['products']) ?></b><small>محصولات</small></div></div>
-    <div class="stat"><span class="ico">👥</span><div><b><?= fa_num($counts['customers']) ?></b><small>مشتریان</small></div></div>
-    <?php if ($isAdmin): ?><div class="stat"><span class="ico">🏬</span><div><b><?= fa_num($counts['sellers']) ?></b><small>فروشندگان</small></div><?php endif; ?>
-    <div class="stat <?= $counts['unpaid'] ? 'warn' : '' ?>"><span class="ico">💳</span><div><b><?= fa_num($counts['unpaid']) ?></b><small>فاکتور پرداخت‌نشده</small></div></div>
-    <div class="stat <?= $counts['lowstock'] ? 'danger' : '' ?>"><span class="ico">⚠️</span><div><b><?= fa_num($counts['lowstock']) ?></b><small>کمبود موجودی</small></div></div>
+    <div class="stat"><span class="ico"><?= icon('wallet') ?></span><div><b><?= price($today) ?></b><small>فروش امروز</small></div></div>
+    <div class="stat"><span class="ico"><?= icon('calendar') ?></span><div><b><?= price($month) ?></b><small>فروش این ماه</small></div></div>
+    <div class="stat"><span class="ico"><?= icon('clipboard-list') ?></span><div><b><?= fa_num($counts['orders']) ?></b><small>کل سفارش‌ها</small></div></div>
+    <div class="stat"><span class="ico"><?= icon('shirt') ?></span><div><b><?= fa_num($counts['products']) ?></b><small>محصولات</small></div></div>
+    <div class="stat"><span class="ico"><?= icon('users') ?></span><div><b><?= fa_num($counts['customers']) ?></b><small>مشتریان</small></div></div>
+    <?php if ($isAdmin): ?><div class="stat"><span class="ico"><?= icon('store') ?></span><div><b><?= fa_num($counts['sellers']) ?></b><small>فروشندگان</small></div><?php endif; ?>
+    <div class="stat <?= $counts['unpaid'] ? 'warn' : '' ?>"><span class="ico"><?= icon('receipt') ?></span><div><b><?= fa_num($counts['unpaid']) ?></b><small>فاکتور پرداخت‌نشده</small></div></div>
+    <div class="stat <?= $counts['lowstock'] ? 'danger' : '' ?>"><span class="ico"><?= icon('triangle-alert') ?></span><div><b><?= fa_num($counts['lowstock']) ?></b><small>کمبود موجودی</small></div></div>
 </div>
 
 <div class="cols-2">
@@ -144,8 +144,8 @@ include __DIR__ . '/inc/header.php';
         </table>
     </div>
     <div class="p-box">
-        <h3>⚠️ هشدار کمبود موجودی</h3>
-        <?php if (!$lowItems): ?><p class="muted">موجودی همه محصولات مناسب است. ✅</p><?php else: ?>
+        <h3><?= icon('triangle-alert') ?> هشدار کمبود موجودی</h3>
+        <?php if (!$lowItems): ?><p class="muted">موجودی همه محصولات مناسب است.</p><?php else: ?>
         <table class="p-table">
             <thead><tr><th>محصول</th><th>موجودی</th><th>حد هشدار</th><th></th></tr></thead>
             <tbody>

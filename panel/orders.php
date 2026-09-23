@@ -88,7 +88,7 @@ include __DIR__ . '/inc/header.php';
 <div class="p-box">
     <div class="box-head">
         <h3>سفارش <span dir="ltr"><?= e($view['code']) ?></span></h3>
-        <a class="btn btn-ghost btn-sm" href="orders.php">← بازگشت به لیست</a>
+        <a class="btn btn-ghost btn-sm" href="orders.php"><?= icon('arrow-right') ?> بازگشت به لیست</a>
     </div>
     <div class="cols-2">
         <div>
@@ -119,7 +119,7 @@ include __DIR__ . '/inc/header.php';
                 <label>یادداشت (به مشتری پیام می‌شود)
                     <input name="note" placeholder="مثلاً: کد رهگیری پست: ۱۲۳…">
                 </label>
-                <button class="btn btn-primary" type="submit" onclick="return confirm('وضعیت سفارش تغییر کند؟')">💾 ثبت تغییر وضعیت</button>
+                <button class="btn btn-primary" type="submit" onclick="return confirm('وضعیت سفارش تغییر کند؟')"><?= icon('save') ?> ثبت تغییر وضعیت</button>
             </form>
             <?php if ($view['status'] === 'cancelled'): ?><div class="p-note">این سفارش لغو شده و اقلامش به انبار برگشت خورده است.</div><?php endif; ?>
         </div>

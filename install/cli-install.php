@@ -29,7 +29,7 @@ file_put_contents(__DIR__ . '/../app/config.php', "<?php\nreturn " . var_export(
     'sqlite_path' => realpath($path),
 ], true) . ";\n");
 
-echo "✔ نصب کامل شد (SQLite: $path)\n";
+echo "نصب کامل شد (SQLite: $path)\n";
 echo "  مدیر: admin@parche.local / admin123\n";
 echo "  فروشنده: alborz@parche.local / seller123\n";
 echo "  مشتری: customer@parche.local / 12345678\n";

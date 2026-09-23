@@ -3,7 +3,7 @@
 <footer class="site-footer">
     <div class="wrap cols">
         <div>
-            <h4>🧵 <?= e(setting('site_name', 'پارچه‌سرا')) ?></h4>
+            <h4><?= icon('scissors') ?> <?= e(setting('site_name', 'پارچه‌سرا')) ?></h4>
             <p><?= nl2br(e(mb_substr(setting('about_text'), 0, 160))) ?>…</p>
         </div>
         <div>
@@ -15,9 +15,9 @@
         </div>
         <div>
             <h4>تماس با ما</h4>
-            <p>📍 <?= e(setting('address')) ?></p>
-            <p>☎ <?= e(setting('phone')) ?> — <?= e(setting('mobile')) ?></p>
-            <p>✉ <?= e(setting('email')) ?></p>
+            <p><?= icon('map-pin') ?> <?= e(setting('address')) ?></p>
+            <p><?= icon('phone') ?> <?= e(setting('phone')) ?> — <?= e(setting('mobile')) ?></p>
+            <p><?= icon('mail') ?> <?= e(setting('email')) ?></p>
             <p>
                 <?php if (setting('instagram')): ?><a href="https://instagram.com/<?= e(setting('instagram')) ?>" target="_blank" rel="noopener">اینستاگرام</a><?php endif; ?>
                 <?php if (setting('telegram')): ?> | <a href="https://t.me/<?= e(setting('telegram')) ?>" target="_blank" rel="noopener">تلگرام</a><?php endif; ?>

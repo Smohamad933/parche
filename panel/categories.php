@@ -60,7 +60,7 @@ include __DIR__ . '/inc/header.php';
 ?>
 <div class="cols-2">
     <div class="p-box">
-        <h3><?= $edit ? 'ویرایش دسته: ' . e($edit['name']) : '➕ افزودن دسته جدید' ?></h3>
+        <h3><?= $edit ? 'ویرایش دسته: ' . e($edit['name']) : icon('plus') . ' افزودن دسته جدید' ?></h3>
         <form method="post" class="p-form">
             <?= csrf_field() ?>
             <input type="hidden" name="action" value="save">
@@ -86,10 +86,10 @@ include __DIR__ . '/inc/header.php';
                 <label>بالانس (وزن نمایش/فروش هوشمند)<input type="number" name="balance" value="<?= (int)($edit['balance'] ?? 0) ?>"></label>
                 <label class="chk"><input type="checkbox" name="is_active" <?= (!$edit || (int)$edit['is_active']) ? 'checked' : '' ?>> فعال</label>
             </div>
-            <button class="btn btn-primary" type="submit">💾 ذخیره</button>
+            <button class="btn btn-primary" type="submit"><?= icon('save') ?> ذخیره</button>
             <?php if ($edit): ?><a class="btn btn-ghost" href="categories.php">انصراف</a><?php endif; ?>
         </form>
-        <div class="p-note">💡 فیلد «بالانس» پایه‌ی سیستم بالانس‌سازی و طرح فروش هوشمند فاز بعدی است: عدد بزرگ‌تر = نمایش و اولویت بیشتر.</div>
+        <div class="p-note"><?= icon('lightbulb') ?> فیلد «بالانس» پایه‌ی سیستم بالانس‌سازی و طرح فروش هوشمند فاز بعدی است: عدد بزرگ‌تر = نمایش و اولویت بیشتر.</div>
     </div>
 
     <div class="p-box">

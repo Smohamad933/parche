@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'send'
     } else {
         q("INSERT INTO messages (sender_id, receiver_id, subject, body, is_read, created_at) VALUES (?,?,?,?,0,?)", [$u['id'], $to, $subject, $body, now()]);
         if ($replyTo) q("UPDATE messages SET is_read = 1 WHERE id = ?", [$replyTo]);
-        flash_set('s', 'پیام ارسال شد ✅');
+        flash_set('s', 'پیام ارسال شد.');
         redirect('messages.php');
     }
 }
@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'broad
             q("INSERT INTO messages (sender_id, receiver_id, subject, body, is_read, created_at) VALUES (?,?,?,?,0,?)", [$u['id'], $r['id'], $subject, $body, now()]);
             $n++;
         }
-        flash_set('s', "پیام برای " . fa_num($n) . " کاربر ارسال شد 📢");
+        flash_set('s', "پیام برای " . fa_num($n) . " کاربر ارسال شد.");
         redirect('messages.php');
     }
 }
@@ -62,7 +62,7 @@ include __DIR__ . '/inc/header.php';
 ?>
 <div class="cols-2">
     <div class="p-box">
-        <div class="box-head"><h3>📥 صندوق ورودی</h3></div>
+        <div class="box-head"><h3><?= icon('inbox') ?> صندوق ورودی</h3></div>
         <?php if (!$inbox): ?><p class="muted">پیامی نیست.</p><?php endif; ?>
         <?php foreach ($inbox as $m): ?>
             <a class="msg-row <?= (int)$m['is_read'] ? '' : 'unread' ?>" href="messages.php?view=<?= (int)$m['id'] ?>">
@@ -70,7 +70,7 @@ include __DIR__ . '/inc/header.php';
                 <small class="muted">از <?= e($m['sname'] ?: 'سیستم') ?> · <?= jdate_human($m['created_at']) ?></small>
             </a>
         <?php endforeach; ?>
-        <div class="box-head" style="margin-top:18px"><h3>📤 ارسالی</h3></div>
+        <div class="box-head" style="margin-top:18px"><h3><?= icon('send') ?> ارسالی</h3></div>
         <?php if (!$sent): ?><p class="muted">پیامی ارسال نکرده‌اید.</p><?php endif; ?>
         <?php foreach ($sent as $m): ?>
             <a class="msg-row" href="messages.php?view=<?= (int)$m['id'] ?>">
@@ -82,7 +82,7 @@ include __DIR__ . '/inc/header.php';
 
     <div>
         <div class="p-box">
-            <h3>✉️ پیام جدید</h3>
+            <h3><?= icon('mail') ?> پیام جدید</h3>
             <form method="post" class="p-form">
                 <?= csrf_field() ?>
                 <input type="hidden" name="action" value="send">
@@ -102,7 +102,7 @@ include __DIR__ . '/inc/header.php';
 
         <?php if ($isAdmin): ?>
         <div class="p-box">
-            <h3>📢 پیام همگانی</h3>
+            <h3><?= icon('megaphone') ?> پیام همگانی</h3>
             <form method="post" class="p-form">
                 <?= csrf_field() ?>
                 <input type="hidden" name="action" value="broadcast">
@@ -122,7 +122,7 @@ include __DIR__ . '/inc/header.php';
 
         <?php if ($view): ?>
         <div class="p-box">
-            <div class="box-head"><h3>💬 <?= e($view['subject']) ?></h3></div>
+            <div class="box-head"><h3><?= icon('message-square') ?> <?= e($view['subject']) ?></h3></div>
             <div class="msg-bubble <?= (int)$view['sender_id'] === (int)$u['id'] ? 'mine' : '' ?>">
                 <div class="msg-meta"><?= (int)$view['sender_id'] === (int)$u['id'] ? 'شما' : e($view['sname'] ?: 'سیستم') ?> · <?= jdate_human($view['created_at']) ?></div>
                 <p><?= nl2br(e($view['body'])) ?></p>

@@ -7,7 +7,7 @@ $history = $order ? q("SELECT * FROM order_history WHERE order_id = ? ORDER BY i
 $pageTitle = 'پیگیری سفارش';
 include __DIR__ . '/inc/header.php';
 ?>
-<h1 class="page-title">🔎 پیگیری سفارش</h1>
+<h1 class="page-title"><?= icon('search') ?> پیگیری سفارش</h1>
 
 <form class="track-form" method="get">
     <input type="text" name="code" placeholder="کد سفارش را وارد کنید (مثلاً ORD-000001)" dir="ltr" value="<?= e($code) ?>" required>

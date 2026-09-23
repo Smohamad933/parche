@@ -35,7 +35,7 @@ include __DIR__ . '/inc/header.php';
 ?>
 <div class="cols-2">
     <div class="p-box">
-        <h3>➕ افزودن فروشنده</h3>
+        <h3><?= icon('plus') ?> افزودن فروشنده</h3>
         <form method="post" class="p-form">
             <?= csrf_field() ?>
             <input type="hidden" name="action" value="add">
@@ -50,7 +50,7 @@ include __DIR__ . '/inc/header.php';
             <label>رمز عبور (حداقل ۶ کاراکتر) *<input name="password" required></label>
             <button class="btn btn-primary" type="submit">افزودن فروشنده</button>
         </form>
-        <div class="p-note">🏬 فروشنده پس از ورود به پنل، فقط محصولات، سفارش‌ها و فاکتورهای خودش را می‌بیند.</div>
+        <div class="p-note"><?= icon('store') ?> فروشنده پس از ورود به پنل، فقط محصولات، سفارش‌ها و فاکتورهای خودش را می‌بیند.</div>
     </div>
     <div class="p-box">
         <h3>فروشندگان</h3>

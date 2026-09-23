@@ -4,7 +4,7 @@ if (!is_admin()) { flash_set('e', 'دسترسی فقط برای مدیر.'); red
 $pageTitle = 'تنظیمات';
 $uid = current_user()['id'];
 
-$settingKeys = ['site_name', 'site_tagline', 'hero_title', 'hero_subtitle', 'phone', 'mobile', 'email', 'address', 'instagram', 'telegram', 'whatsapp', 'shipping_flat', 'free_shipping_min', 'about_text', 'footer_note', 'currency'];
+$settingKeys = ['site_name', 'site_tagline', 'hero_title', 'hero_subtitle', 'phone', 'mobile', 'email', 'address', 'instagram', 'telegram', 'whatsapp', 'shipping_flat', 'free_shipping_min', 'about_text', 'footer_note', 'currency', 'font_family', 'font_scale'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'save') {
     csrf_verify();
@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'save'
         q("DELETE FROM settings WHERE skey = ?", [$k]);
         q("INSERT INTO settings (skey, svalue) VALUES (?,?)", [$k, $v]);
     }
-    flash_set('s', 'تنظیمات ذخیره شد ✅');
+    flash_set('s', 'تنظیمات ذخیره شد.');
     redirect('settings.php');
 }
 
@@ -35,7 +35,7 @@ include __DIR__ . '/inc/header.php';
 ?>
 <div class="cols-2">
     <div class="p-box">
-        <h3>⚙️ تنظیمات فروشگاه</h3>
+        <h3><?= icon('settings') ?> تنظیمات فروشگاه</h3>
         <form method="post" class="p-form">
             <?= csrf_field() ?>
             <input type="hidden" name="action" value="save">
@@ -64,12 +64,28 @@ include __DIR__ . '/inc/header.php';
             </div>
             <label>متن درباره ما<textarea name="about_text" rows="4"><?= e(setting('about_text')) ?></textarea></label>
             <label>متن فوتر<input name="footer_note" value="<?= e(setting('footer_note')) ?>"></label>
-            <button class="btn btn-primary btn-lg" type="submit">💾 ذخیره تنظیمات</button>
+            <div class="row2">
+                <label>فونت کل سایت
+                    <select name="font_family">
+                        <?php foreach (available_fonts() as $fk => $fv): ?>
+                            <option value="<?= e($fk) ?>" <?= setting('font_family', 'vazirmatn') === $fk ? 'selected' : '' ?>><?= e($fv['label']) ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </label>
+                <label>اندازه فونت
+                    <select name="font_scale">
+                        <option value="0.9" <?= setting('font_scale', '1') === '0.9' ? 'selected' : '' ?>>کوچک‌تر</option>
+                        <option value="1" <?= setting('font_scale', '1') === '1' ? 'selected' : '' ?>>معمولی</option>
+                        <option value="1.1" <?= setting('font_scale', '1') === '1.1' ? 'selected' : '' ?>>بزرگ‌تر</option>
+                    </select>
+                </label>
+            </div>
+            <button class="btn btn-primary btn-lg" type="submit"><?= icon('save') ?> ذخیره تنظیمات</button>
         </form>
     </div>
     <div>
         <div class="p-box">
-            <h3>🔑 تغییر رمز مدیر</h3>
+            <h3><?= icon('key-round') ?> تغییر رمز مدیر</h3>
             <form method="post" class="p-form">
                 <?= csrf_field() ?>
                 <input type="hidden" name="action" value="chpass">
@@ -79,7 +95,7 @@ include __DIR__ . '/inc/header.php';
             </form>
         </div>
         <div class="p-box">
-            <h3>🔒 امنیت پنل</h3>
+            <h3><?= icon('shield-check') ?> امنیت پنل</h3>
             <ul class="security-tips">
                 <li>پنل هیچ لینکی در سایت عمومی ندارد و فقط با آدرس مستقیم <code dir="ltr">/panel/login.php</code> باز می‌شود.</li>
                 <li>برای امنیت بیشتر می‌توانید پوشه <code dir="ltr">panel</code> را به یک نام مخفی تغییر دهید (مثلاً <code dir="ltr">pnl-k3x9</code>)؛ چون همه لینک‌های داخل پنل نسبی هستند، پنل همچنان کار می‌کند.</li>

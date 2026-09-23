@@ -68,8 +68,8 @@ include __DIR__ . '/inc/header.php';
     <div class="box-head">
         <h3>فاکتور <span dir="ltr"><?= e($view['code']) ?></span></h3>
         <div>
-            <a class="btn btn-ghost btn-sm" href="invoices.php">← بازگشت</a>
-            <a class="btn btn-primary btn-sm" href="../invoice.php?code=<?= e($view['code']) ?>" target="_blank">🖨 چاپ / مشاهده</a>
+            <a class="btn btn-ghost btn-sm" href="invoices.php"><?= icon('arrow-right') ?> بازگشت</a>
+            <a class="btn btn-primary btn-sm" href="../invoice.php?code=<?= e($view['code']) ?>" target="_blank"><?= icon('printer') ?> چاپ / مشاهده</a>
         </div>
     </div>
     <table class="p-table kv">
@@ -85,17 +85,17 @@ include __DIR__ . '/inc/header.php';
         <input type="hidden" name="id" value="<?= (int)$view['id'] ?>">
         <?php if ($view['status'] !== 'paid'): ?>
             <input type="hidden" name="to" value="paid">
-            <button class="btn btn-primary" type="submit">✅ ثبت پرداخت</button>
+            <button class="btn btn-primary" type="submit"><?= icon('check') ?> ثبت پرداخت</button>
         <?php else: ?>
             <input type="hidden" name="to" value="unpaid">
-            <button class="btn btn-ghost" type="submit">↩ برگشت به پرداخت‌نشده</button>
+            <button class="btn btn-ghost" type="submit"><?= icon('rotate-ccw') ?> برگشت به پرداخت‌نشده</button>
         <?php endif; ?>
     </form>
 </div>
 <?php else: ?>
 <div class="cols-2">
     <div class="p-box">
-        <h3>➕ صدور فاکتور دستی</h3>
+        <h3><?= icon('plus') ?> صدور فاکتور دستی</h3>
         <form method="post" class="p-form">
             <?= csrf_field() ?>
             <input type="hidden" name="action" value="create">
@@ -124,7 +124,7 @@ include __DIR__ . '/inc/header.php';
                 <?php endfor; ?>
             </div>
             <label>توضیحات<input name="note"></label>
-            <button class="btn btn-primary" type="submit">🧾 صدور فاکتور</button>
+            <button class="btn btn-primary" type="submit"><?= icon('receipt') ?> صدور فاکتور</button>
         </form>
     </div>
     <div class="p-box">
@@ -138,9 +138,9 @@ include __DIR__ . '/inc/header.php';
         }
         ?>
         <div class="stat-cards">
-            <div class="stat"><span class="ico">💳</span><div><b><?= price($paidSum) ?></b><small>وصول‌شده</small></div></div>
-            <div class="stat warn"><span class="ico">⏳</span><div><b><?= price($unpaidSum) ?></b><small>در انتظار پرداخت</small></div></div>
-            <div class="stat"><span class="ico">🧾</span><div><b><?= price($allSum) ?></b><small>جمع کل</small></div></div>
+            <div class="stat"><span class="ico"><?= icon('wallet') ?></span><div><b><?= price($paidSum) ?></b><small>وصول‌شده</small></div></div>
+            <div class="stat warn"><span class="ico"><?= icon('hourglass') ?></span><div><b><?= price($unpaidSum) ?></b><small>در انتظار پرداخت</small></div></div>
+            <div class="stat"><span class="ico"><?= icon('receipt') ?></span><div><b><?= price($allSum) ?></b><small>جمع کل</small></div></div>
         </div>
     </div>
 </div>
