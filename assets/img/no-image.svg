@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300">
+  <rect width="400" height="300" fill="#efece5"/>
+  <g fill="none" stroke="#d8d2c2" stroke-width="10">
+    <path d="M0 40 Q100 10 200 40 T400 40"/>
+    <path d="M0 90 Q100 60 200 90 T400 90"/>
+    <path d="M0 140 Q100 110 200 140 T400 140"/>
+    <path d="M0 190 Q100 160 200 190 T400 190"/>
+    <path d="M0 240 Q100 210 200 240 T400 240"/>
+  </g>
+  <text x="200" y="160" font-family="Tahoma" font-size="26" fill="#9a9482" text-anchor="middle">تصویر پارچه</text>
+</svg>

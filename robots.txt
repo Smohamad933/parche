@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /panel/
+Disallow: /install/
+Disallow: /account.php
+Disallow: /cart.php
+Disallow: /checkout.php

@@ -1,0 +1,11 @@
+# فایل‌های محیطی که نباید در گیت ذخیره شوند
+app/config.php
+data/*.sqlite
+data/*.sqlite-journal
+data/*.db
+!data/.gitkeep
+uploads/thumbs/*
+*.log
+.DS_Store
+Thumbs.db
+install/.locked
