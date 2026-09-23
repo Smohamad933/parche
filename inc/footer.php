@@ -1,14 +1,6 @@
 <?php if (!defined('PARCHE')) exit; ?>
 </main>
 <footer class="site-footer">
-    <div class="feat-strip">
-        <div class="wrap feat-in">
-            <div class="feat"><?= icon('truck') ?><div><b>ارسال سریع</b><span>به سراسر کشور</span></div></div>
-            <div class="feat"><?= icon('badge-check') ?><div><b>ضمانت کیفیت</b><span>کنترل قبل از ارسال</span></div></div>
-            <div class="feat"><?= icon('rotate-ccw') ?><div><b>مرجوعی ۷ روزه</b><span>بدون قید و شرط</span></div></div>
-            <div class="feat"><?= icon('shield-check') ?><div><b>خرید مطمئن</b><span>پشتیبانی واقعی</span></div></div>
-        </div>
-    </div>
     <div class="wrap cols">
         <div class="f-brand">
             <h4><span class="f-logo"><?= icon('scissors') ?></span> <?= e(setting('site_name', 'پارچینو')) ?></h4>

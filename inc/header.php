@@ -21,7 +21,6 @@ $cartCount = cart_count();
         <div class="wrap">
             <div class="topbar-right">
                 <?php if (setting('mobile')): ?><span class="tb-item"><?= icon('smartphone') ?> <?= fa_num(en_num(setting('mobile'))) ?></span><?php endif; ?>
-                <span class="tb-item tb-ok"><?= icon('badge-check') ?> ضمانت کیفیت و مرجوعی ۷ روزه</span>
             </div>
             <div class="topbar-left">
                 <?php if ($u): ?>
