@@ -4,6 +4,24 @@
 
 ---
 
+## 📥 دانلود سورس (فایل ZIP)
+
+لینک مستقیم (همیشه نسخه پایدار شده روی همین برنچ):
+
+```
+https://raw.githubusercontent.com/Smohamad933/parche/arena/01a0cde2-parche/parche-source.zip
+```
+
+لینک جایگزین (آرشیو خودکار گیت‌هاب از کل برنچ):
+
+```
+https://codeload.github.com/Smohamad933/parche/zip/refs/heads/arena/01a0cde2-parche
+```
+
+> بعد از استخراج، پوشه `parche/` را در ریشه سایت IIS (مثلاً `C:\inetpub\wwwroot\parche\`) کپی کنید و مراحل «نصب روی IIS» را دنبال کنید.
+
+---
+
 ## ✨ امکانات
 
 ### سایت عمومی (مشتریان)
